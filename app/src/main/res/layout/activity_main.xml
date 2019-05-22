@@ -11,27 +11,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter phone number below then press submit."
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:id="@+id/textView"/>
+            android:id="@+id/textView" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+    />
     <Button
             android:text="Submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            android:id="@+id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginBottom="348dp" app:layout_constraintBottom_toBottomOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="41dp"
             android:inputType="phone"
             android:ems="10"
-            android:id="@+id/editText" android:layout_marginTop="8dp"
+            android:id="@+id/editText"
+            android:hint="+923001234567"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/textView" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:hint="+923001234567" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/button" app:layout_constraintVertical_bias="0.533"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText2" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/button" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="Enter code" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/button2" app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintVertical_bias="1.0"/>
+    <Button
+            android:text="Verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

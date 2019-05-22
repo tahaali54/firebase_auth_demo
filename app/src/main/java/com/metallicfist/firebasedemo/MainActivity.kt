@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -17,12 +18,14 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
-    //var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks? = null
+    public var storedVerificationId: String = ""
+    public var resendToken: PhoneAuthProvider.ForceResendingToken? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val db = FirebaseFirestore.getInstance()
+
         var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
@@ -64,8 +67,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("log", "onCodeSent:" + verificationId!!)
 
                 // Save verification ID and resending token so we can use them later
-                //storedVerificationId = verificationId
-                //resendToken = token
+                storedVerificationId = verificationId
+                resendToken = token
 
                 // ...
             }
@@ -78,11 +81,42 @@ class MainActivity : AppCompatActivity() {
                 TimeUnit.SECONDS, // Unit of timeout
                 this,             // Activity (for callback binding)
                 callbacks) // OnVerificationStateChangedCallbacks
+            editText.text.clear()
+            //button.isEnabled = false
+
 
             //Cloud Firestore methods
             //createNewUser(db)
             //createNewUserExtended(db)
         }
+        button2.setOnClickListener {
+            val credential = PhoneAuthProvider.getCredential(storedVerificationId, editText2.text.toString())
+            signInWithPhoneAuthCredential(credential)
+        }
+    }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        var auth: FirebaseAuth? = null
+        auth = FirebaseAuth.getInstance()
+
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("log", "signInWithCredential:success")
+
+                    val user = task.result?.user
+
+                    Toast.makeText(this@MainActivity, "Sign-in successful!", Toast.LENGTH_LONG).show()
+                    // ...
+                } else {
+                    // Sign in failed, display a message and update the UI
+                    Log.w("log", "signInWithCredential:failure", task.exception)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                    }
+                }
+            }
     }
 
 
