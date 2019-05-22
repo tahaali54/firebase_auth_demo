@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "989731960427",
+    "firebase_url": "https://android-firebase-demo-d52a2.firebaseio.com",
+    "project_id": "android-firebase-demo-d52a2",
+    "storage_bucket": "android-firebase-demo-d52a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989731960427:android:be941451f6a0d621",
+        "android_client_info": {
+          "package_name": "com.metallicfist.firebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989731960427-dbli0vrqskid4aieod8r1v19c19qobhs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5BncF21-x5Pq-dJJzl76EgI09p85QnKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989731960427-dbli0vrqskid4aieod8r1v19c19qobhs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
