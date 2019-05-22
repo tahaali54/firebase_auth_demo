@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val db = FirebaseFirestore.getInstance()
 
         var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -83,12 +82,8 @@ class MainActivity : AppCompatActivity() {
                 callbacks) // OnVerificationStateChangedCallbacks
             editText.text.clear()
             //button.isEnabled = false
-
-
-            //Cloud Firestore methods
-            //createNewUser(db)
-            //createNewUserExtended(db)
         }
+
         button2.setOnClickListener {
             val credential = PhoneAuthProvider.getCredential(storedVerificationId, editText2.text.toString())
             signInWithPhoneAuthCredential(credential)
@@ -116,46 +111,6 @@ class MainActivity : AppCompatActivity() {
                         // The verification code entered was invalid
                     }
                 }
-            }
-    }
-
-
-    //Cloud Firestore methods
-    private fun createNewUserExtended(db: FirebaseFirestore) {
-        // Create a new user with a first, middle, and last name
-        val user = HashMap<String, Any>()
-        user["first"] = "Alan"
-        user["middle"] = "Mathison"
-        user["last"] = "Turing"
-        user["born"] = 1912
-
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d("success", "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("failure", "Error adding document", e)
-            }
-    }
-
-    //Cloud Firestore methods
-    private fun createNewUser(db: FirebaseFirestore) {
-        // Create a new user with a first and last name
-        val user = HashMap<String, Any>()
-        user["first"] = "Ada"
-        user["last"] = "Lovelace"
-        user["born"] = 1815
-
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d("success", "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("failure", "Error adding document", e)
             }
     }
 
